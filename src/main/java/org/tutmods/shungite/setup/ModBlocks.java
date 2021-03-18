@@ -8,6 +8,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import org.tutmods.shungite.ShungiteConstants;
 
 import java.util.function.Supplier;
 
@@ -20,14 +21,14 @@ public class ModBlocks {
                                             .sound(SoundType.ANCIENT_DEBRIS)));
     static void register() {}
 
-    private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
+    private static <T extends Block> RegistryObject<T> registerNoItem(final String name, final Supplier<T> block) {
         return Registration.BLOCK_DEFERRED_REGISTER.register(name, block);
     }
 
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block) {
+    private static <T extends Block> RegistryObject<T> register(final String name, final Supplier<T> block) {
         final RegistryObject<T> blockToRegister = registerNoItem(name, block);
         Registration.ITEM_DEFERRED_REGISTER.register(name, () ->
-                new BlockItem(blockToRegister.get(), new Item.Properties().tab(ItemGroup.TAB_MISC))
+                new BlockItem(blockToRegister.get(), new Item.Properties().tab(ShungiteConstants.SHUNGITE_GROUP))
         );
         return blockToRegister;
     }
