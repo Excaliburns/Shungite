@@ -2,6 +2,7 @@ package org.tutmods.shungite.setup;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import org.tutmods.shungite.ShungiteConstants;
 
 public class ShungiteGroup extends ItemGroup {
@@ -12,5 +13,10 @@ public class ShungiteGroup extends ItemGroup {
     @Override
     public ItemStack makeIcon() {
         return ModItems.SHUNGITE.get().getDefaultInstance();
+    }
+
+    @Override
+    public void fillItemList(final NonNullList<ItemStack> stack) {
+        stack.add(ModItems.SHUNGITE.get().getDefaultInstance());
     }
 }

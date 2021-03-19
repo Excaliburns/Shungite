@@ -1,6 +1,9 @@
 {
   "itemGroup.shungite": "Shungite",
-  
+
   "item.shungite.shungite": "Shungite",
-  "block.shungite.shungite_crystal": "Shungite Crystal"
+  "block.shungite.shungite_crystal": "Shungite Crystal",
+
+  "info.shungite.energy": "Energy",
+  "info.shungite.shungiteCrystal": "Protects you from the harmful frequencies and frequencies..."
 }
