@@ -6,5 +6,7 @@
 
   "info.shungite.energy": "Energy",
   "info.shungite.stats": "Stats",
-  "info.shungite.shungiteCrystal": "Protects against frequencies and unwanted frequencies..."
+  "info.shungite.shungiteCrystal": "Protects against frequencies and unwanted frequencies...",
+
+  "effect.shungite.shungite_fluidity": "Crystal Fluidity"
 }

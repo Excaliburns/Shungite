@@ -10,10 +10,15 @@ import org.tutmods.shungite.ShungiteConstants;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Stats are currently hardcoded into the mod and then retrieved through the map below.
+ * Ideally we'd want to have some ForgeRegistry where you can register new effects and do it that way?
+ * Something like that I guess.
+ */
 public enum Stat {
     ABSORPTION (Effects.ABSORPTION, ShungiteConstants.SHUNGITE_ABSORPTION, 5, TextFormatting.GOLD),
-    SPEED (Effects.MOVEMENT_SPEED, ShungiteConstants.SHUNGITE_SPEED, 2, TextFormatting.AQUA),
-    DIG_SPEED (Effects.DIG_SPEED, ShungiteConstants.SHUNGITE_DIG_SPEED, 1, TextFormatting.WHITE);
+    SPEED      (Effects.MOVEMENT_SPEED, ShungiteConstants.SHUNGITE_SPEED, 2, TextFormatting.AQUA),
+    DIG_SPEED  (Effects.DIG_SPEED, ShungiteConstants.SHUNGITE_DIG_SPEED, 1, TextFormatting.WHITE);
 
     private Effect effect;
     private String name;

@@ -2,6 +2,7 @@ package org.tutmods.shungite.items.crystal;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -71,7 +72,7 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
 
     @Override
     public void appendHoverText(final ItemStack stack, final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
-        tooltip.add(getTextComponent("info.shungite.shungiteCrystal").withStyle(TextFormatting.AQUA));
+        tooltip.add(getTextComponent("info.shungite.shungiteCrystal").withStyle(TextFormatting.GRAY));
 
         tooltip.add(getTextComponent("info.shungite.energy")
                 .append(": " + getCurrentCrystalPower(stack) + "/" + getMaxCrystalPower(stack))
