@@ -36,28 +36,38 @@ public interface IShungiteCrystalItem extends IForgeItem {
 
     default int getCurrentCrystalPower(final ItemStack stack) { return getShungiteData(stack).getInt(SHUNGITE_CURRENT_ENERGY_TAG); }
 
-    default List<Stat> getStats(final ItemStack stack) {
+    default List<ShungiteCrystalStats> getStats(final ItemStack stack) {
         final CompoundNBT stackTag = getShungiteData(stack);
 
         if (stackTag == null) { return new ArrayList<>(); }
 
         final ListNBT statList = stackTag.getList(SHUNGITE_STATS_TAG, Constants.NBT.TAG_COMPOUND);
 
-        final List<Stat> stats = new ArrayList<>();
+        final List<ShungiteCrystalStats> stats = new ArrayList<>();
         for (int i = 0; i < statList.size(); i++) {
-            final Stat stat = Stat.deserialize(statList.getCompound(i));
+            final ShungiteCrystalStats stat = ShungiteCrystalStats.deserialize(statList.getCompound(i));
 
-            if (stat != null) { stats.add(stat); }
+            stats.add(stat);
         }
 
         return stats;
+    }
+
+    default void putCompletedStats(final ItemStack stack, final List<ShungiteCrystalStats> stats) {
+        final ListNBT list = new ListNBT();
+
+        for (ShungiteCrystalStats stat : stats) {
+            list.add(ShungiteCrystalStats.serialize(stat));
+        }
+
+        getShungiteData(stack).put(SHUNGITE_STATS_TAG, list);
     }
 
     default void putStats(final ItemStack stack, final List<Stat> stats) {
         final ListNBT list = new ListNBT();
 
         for (Stat stat : stats) {
-            list.add(Stat.serialize(stat));
+            list.add(ShungiteCrystalStats.serialize(new ShungiteCrystalStats(stat)));
         }
 
         getShungiteData(stack).put(SHUNGITE_STATS_TAG, list);

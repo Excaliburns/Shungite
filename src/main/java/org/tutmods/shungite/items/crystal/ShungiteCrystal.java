@@ -1,10 +1,12 @@
 package org.tutmods.shungite.items.crystal;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
@@ -17,6 +19,7 @@ import org.tutmods.shungite.items.crystal.stats.Stat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.tutmods.shungite.util.ShungiteUtils.getShungiteData;
 import static org.tutmods.shungite.util.ShungiteUtils.getTextComponent;
@@ -55,8 +58,14 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
         if (entity instanceof PlayerEntity && crystalPower > 0 && isActive) {
             PlayerEntity player = (PlayerEntity) entity;
 
-            // Effect, Duration (tick), Strength
-            player.addEffect(new EffectInstance(Effects.ABSORPTION, 20, 2));
+            final List<Pair<Effect, Integer>> effectsToApply = getStats(itemStack)
+                    .stream()
+                    .map( stat -> new Pair<>(stat.getStat().getEffect(), stat.getLevel()))
+                    .collect(Collectors.toList());
+
+            for (Pair<Effect, Integer> effect : effectsToApply) {
+                player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond()));
+            }
         }
     }
 
@@ -68,8 +77,7 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
                 .append(": " + getCurrentCrystalPower(stack) + "/" + getMaxCrystalPower(stack))
                 .withStyle(TextFormatting.BOLD).withStyle(TextFormatting.BLUE));
 
-        tooltip.add(getTextComponent("info.shungite.stats")
-                .append("\n" + Stat.listToString(getStats(stack))));
+        tooltip.addAll(ShungiteCrystalStats.listToString(getStats(stack)));
 
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

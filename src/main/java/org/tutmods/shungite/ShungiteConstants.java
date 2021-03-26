@@ -13,5 +13,11 @@ public class ShungiteConstants {
     public static final String SHUNGITE_ACTIVE = "IsActive";
 
     public static final String SHUNGITE_STATS_TAG = "Stats";
+    public static final String SHUNGITE_CRYSTAL_STATS_TAG = "CrystalStats";
     public static final String SHUNGITE_STAT_TAG = "Stat";
+    public static final String SHUNGITE_STAT_LEVEL_TAG = "StatLevel";
+
+    public static final String SHUNGITE_ABSORPTION = "Absorption";
+    public static final String SHUNGITE_SPEED = "Speed";
+    public static final String SHUNGITE_DIG_SPEED = "DigSpeed";
 }

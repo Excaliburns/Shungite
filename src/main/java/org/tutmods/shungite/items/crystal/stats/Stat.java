@@ -4,28 +4,31 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import org.tutmods.shungite.ShungiteConstants;
 
 import java.util.HashMap;
 import java.util.List;
 
 public enum Stat {
-    ABSORPTION (Effects.ABSORPTION, Effects.ABSORPTION.getDisplayName(), 5),
-    SPEED (Effects.MOVEMENT_SPEED, Effects.MOVEMENT_SPEED.getDisplayName(), 2),
-    DIG_SPEED (Effects.DIG_SPEED, Effects.MOVEMENT_SPEED.getDisplayName(), 1);
+    ABSORPTION (Effects.ABSORPTION, ShungiteConstants.SHUNGITE_ABSORPTION, 5, TextFormatting.GOLD),
+    SPEED (Effects.MOVEMENT_SPEED, ShungiteConstants.SHUNGITE_SPEED, 2, TextFormatting.AQUA),
+    DIG_SPEED (Effects.DIG_SPEED, ShungiteConstants.SHUNGITE_DIG_SPEED, 1, TextFormatting.WHITE);
 
     private Effect effect;
-    private ITextComponent name;
+    private String name;
     private int pointValue;
+    private TextFormatting color;
 
     private static HashMap<String, Stat> mappings;
 
-    Stat(final Effect effect, final ITextComponent name, final int pointValue) {
+    Stat(final Effect effect, final String name, final int pointValue, final TextFormatting color) {
         this.effect = effect;
         this.name = name;
         this.pointValue = pointValue;
+        this.color = color;
 
-        getMappings().put(name.getString(), this);
+        getMappings().put(name, this);
     }
 
     private static HashMap<String, Stat> getMappings() {
@@ -39,28 +42,39 @@ public enum Stat {
         return mappings;
     }
 
-
-    public static CompoundNBT serialize(final Stat stat) {
-        CompoundNBT tag = new CompoundNBT();
-
-        tag.putString(ShungiteConstants.SHUNGITE_STAT_TAG, stat.name.getString());
-
-        return tag;
+    public static Stat getStat(final String statString) {
+        return mappings.get(statString);
     }
 
-    public static Stat deserialize(final CompoundNBT tag) {
-        return mappings.get(tag.getString(ShungiteConstants.SHUNGITE_STAT_TAG));
+    public Effect getEffect() {
+        return effect;
     }
 
-    public static String listToString(final List<Stat> stats) {
-        final StringBuilder builder = new StringBuilder();
-        for (Stat s : stats) {
-            builder.append("Name: ").append(s.name.getString());
-            builder.append("\n");
-            builder.append("Points: ").append(s.pointValue);
-            builder.append("\n");
-        }
+    public void setEffect(Effect effect) {
+        this.effect = effect;
+    }
 
-        return builder.toString();
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPointValue() {
+        return pointValue;
+    }
+
+    public void setPointValue(int pointValue) {
+        this.pointValue = pointValue;
+    }
+
+    public TextFormatting getColor() {
+        return color;
+    }
+
+    public void setColor(TextFormatting color) {
+        this.color = color;
     }
 }
