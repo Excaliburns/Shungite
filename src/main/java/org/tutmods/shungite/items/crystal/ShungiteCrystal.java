@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -16,20 +17,26 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.extensions.IForgeItem;
 import org.tutmods.shungite.items.crystal.stats.Stat;
+import org.tutmods.shungite.setup.ModItems;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.tutmods.shungite.util.ShungiteUtils.getShungiteData;
 import static org.tutmods.shungite.util.ShungiteUtils.getTextComponent;
+import static org.tutmods.shungite.util.crystal.CrystalUtils.*;
 
-public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
+
+public class ShungiteCrystal extends Item implements IForgeItem {
     public ShungiteCrystal(final Properties properties) {
         super(properties);
     }
 
+    @Nonnull
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         if (!world.isClientSide) {
@@ -65,7 +72,7 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
                     .collect(Collectors.toList());
 
             for (Pair<Effect, Integer> effect : effectsToApply) {
-                player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond()));
+                player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond(), false, false));
             }
         }
     }
@@ -86,17 +93,6 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
     @Override
     public boolean isFoil(final ItemStack stack) {
         return getActive(stack);
-    }
-
-    @Override
-    public ItemStack getDefaultInstance() {
-        final ItemStack stack = new ItemStack(this);
-        stack.setTag(getShungiteData(stack));
-        putMaxCrystalPower(stack, 5000);
-        putCurrentCrystalPower(stack, 2500);
-        putStats(stack, Arrays.asList(Stat.SPEED, Stat.ABSORPTION));
-
-        return stack;
     }
 
     //region Durability Display
@@ -120,4 +116,16 @@ public class ShungiteCrystal extends Item implements IShungiteCrystalItem {
         return true;
     }
     //endregion
+
+    @Nonnull
+    @Override
+    public ItemStack getDefaultInstance() {
+        final ItemStack stack = new ItemStack(this);
+        stack.setTag(getShungiteData(stack));
+        putMaxCrystalPower(stack, 5000);
+        putCurrentCrystalPower(stack, 2500);
+        putStats(stack, Arrays.asList(Stat.SPEED, Stat.ABSORPTION, Stat.AQUA_AFFINITY));
+
+        return stack;
+    }
 }

@@ -55,16 +55,15 @@ public class ShungiteCrystalStats {
                 .append(":")
                 .withStyle(TextFormatting.BOLD)
                 .withStyle(TextFormatting.UNDERLINE)
-                .append("\n")
+                .append(new StringTextComponent(""))
         );
 
         for (ShungiteCrystalStats s : stats) {
-            final IFormattableTextComponent statComponent = new StringTextComponent(s.stat.name());
+            final IFormattableTextComponent statComponent = new StringTextComponent(s.stat.getReadableName().getString());
             statComponent.withStyle(TextFormatting.RESET);
             statComponent.withStyle(s.stat.getColor());
-            statComponent.append(" ").append(Integer.toString(s.level));
-            statComponent.append(" (").append(Integer.toString(s.stat.getPointValue() * s.level)).append(")");
-            statComponent.append("\n");
+            statComponent.append(" ").append(Integer.toString(s.level + 1));
+            statComponent.append(" (").append(Integer.toString(s.stat.getPointValue() * (s.level + 1))).append(")");
 
             textComponents.add(statComponent);
         }

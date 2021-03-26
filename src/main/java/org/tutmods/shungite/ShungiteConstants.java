@@ -1,6 +1,7 @@
 package org.tutmods.shungite;
 
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.text.ITextComponent;
 import org.tutmods.shungite.setup.ShungiteGroup;
 
 public class ShungiteConstants {
@@ -20,4 +21,14 @@ public class ShungiteConstants {
     public static final String SHUNGITE_ABSORPTION = "Absorption";
     public static final String SHUNGITE_SPEED = "Speed";
     public static final String SHUNGITE_DIG_SPEED = "DigSpeed";
+    public static final String SHUNGITE_AQUA_AFFINITY = "AquaAffinity";
+
+    public static final String JUMP = "Jump";
+    public static final String WATER_BREATHING = "WaterBreathing";
+    public static final String FIRE_RESISTANCE = "FireResistance";
+    public static final String DAMAGE_RESISTANCE = "DamageResistance";
+    public static final String REGENERATION = "Regeneration";
+
+
+    public static final String SHUNGITE_AQUA_AFFINITY_NAME = "Aqua Affinity";
 }
