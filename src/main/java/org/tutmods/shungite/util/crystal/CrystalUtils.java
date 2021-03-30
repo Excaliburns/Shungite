@@ -4,8 +4,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraftforge.common.util.Constants;
-import org.tutmods.shungite.items.crystal.ShungiteCrystalStats;
-import org.tutmods.shungite.items.crystal.stats.Stat;
+import org.tutmods.shungite.items.crystal.effects.ShungiteCrystalEffects;
+import org.tutmods.shungite.items.crystal.effects.ShungiteEffect;
 import org.tutmods.shungite.setup.ModItems;
 
 import java.util.ArrayList;
@@ -34,16 +34,16 @@ public class CrystalUtils {
 
     public static int getCurrentCrystalPower(final ItemStack stack) { return getShungiteData(stack).getInt(SHUNGITE_CURRENT_ENERGY_TAG); }
 
-    public static List<ShungiteCrystalStats> getStats(final ItemStack stack) {
+    public static List<ShungiteCrystalEffects> getStats(final ItemStack stack) {
         final CompoundNBT stackTag = getShungiteData(stack);
 
         if (stackTag == null) { return new ArrayList<>(); }
 
         final ListNBT statList = stackTag.getList(SHUNGITE_STATS_TAG, Constants.NBT.TAG_COMPOUND);
 
-        final List<ShungiteCrystalStats> stats = new ArrayList<>();
+        final List<ShungiteCrystalEffects> stats = new ArrayList<>();
         for (int i = 0; i < statList.size(); i++) {
-            final ShungiteCrystalStats stat = ShungiteCrystalStats.deserialize(statList.getCompound(i));
+            final ShungiteCrystalEffects stat = ShungiteCrystalEffects.deserialize(statList.getCompound(i));
 
             stats.add(stat);
         }
@@ -51,27 +51,27 @@ public class CrystalUtils {
         return stats;
     }
 
-    public static void putCompletedStats(final ItemStack stack, final List<ShungiteCrystalStats> stats) {
+    public static void putCompletedStats(final ItemStack stack, final List<ShungiteCrystalEffects> stats) {
         final ListNBT list = new ListNBT();
 
-        for (ShungiteCrystalStats stat : stats) {
-            list.add(ShungiteCrystalStats.serialize(stat));
+        for (ShungiteCrystalEffects stat : stats) {
+            list.add(ShungiteCrystalEffects.serialize(stat));
         }
 
         getShungiteData(stack).put(SHUNGITE_STATS_TAG, list);
     }
 
-    public static void putStats(final ItemStack stack, final List<Stat> stats) {
+    public static void putStats(final ItemStack stack, final List<ShungiteEffect> effects) {
         final ListNBT list = new ListNBT();
 
-        for (Stat stat : stats) {
-            list.add(ShungiteCrystalStats.serialize(new ShungiteCrystalStats(stat)));
+        for (ShungiteEffect effect : effects) {
+            list.add(ShungiteCrystalEffects.serialize(new ShungiteCrystalEffects(effect)));
         }
 
         getShungiteData(stack).put(SHUNGITE_STATS_TAG, list);
     }
 
-    public static ItemStack getShungiteItemStack(List<ShungiteCrystalStats> stats, int maxPower, int currentPower) {
+    public static ItemStack getShungiteItemStack(List<ShungiteCrystalEffects> stats, int maxPower, int currentPower) {
         final ItemStack stack = new ItemStack(ModItems.SHUNGITE.get());
         stack.setTag(getShungiteData(stack));
         putMaxCrystalPower(stack, maxPower);

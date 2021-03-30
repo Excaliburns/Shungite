@@ -2,15 +2,12 @@ package org.tutmods.shungite.items.crystal;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
@@ -18,11 +15,11 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeItem;
-import org.tutmods.shungite.items.crystal.stats.Stat;
-import org.tutmods.shungite.setup.ModItems;
+import org.tutmods.shungite.items.crystal.effects.ShungiteCrystalEffects;
+import org.tutmods.shungite.setup.ModShungiteEffects;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,7 +65,7 @@ public class ShungiteCrystal extends Item implements IForgeItem {
 
             final List<Pair<Effect, Integer>> effectsToApply = getStats(itemStack)
                     .stream()
-                    .map( stat -> new Pair<>(stat.getStat().getEffect(), stat.getLevel()))
+                    .map( stat -> new Pair<>(stat.getCrystalEffect().getMinecraftEffect(), stat.getLevel()))
                     .collect(Collectors.toList());
 
             for (Pair<Effect, Integer> effect : effectsToApply) {
@@ -85,7 +82,7 @@ public class ShungiteCrystal extends Item implements IForgeItem {
                 .append(": " + getCurrentCrystalPower(stack) + "/" + getMaxCrystalPower(stack))
                 .withStyle(TextFormatting.BOLD).withStyle(TextFormatting.BLUE));
 
-        tooltip.addAll(ShungiteCrystalStats.listToString(getStats(stack)));
+        tooltip.addAll(ShungiteCrystalEffects.listToString(getStats(stack)));
 
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
@@ -124,7 +121,7 @@ public class ShungiteCrystal extends Item implements IForgeItem {
         stack.setTag(getShungiteData(stack));
         putMaxCrystalPower(stack, 5000);
         putCurrentCrystalPower(stack, 2500);
-        putStats(stack, Arrays.asList(Stat.SPEED, Stat.ABSORPTION, Stat.AQUA_AFFINITY));
+        putStats(stack, Collections.singletonList(ModShungiteEffects.EFFECT_ABSORPTION.get()));
 
         return stack;
     }

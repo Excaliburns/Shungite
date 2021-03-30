@@ -13,6 +13,7 @@ import org.tutmods.shungite.ShungiteConstants;
 import java.util.function.Supplier;
 
 public class ModBlocks {
+    //shungite.item.shungite.shungite
     public static final RegistryObject<Block> SHUNGITE_CRYSTAL = register("shungite_crystal", () ->
             new Block(
                     AbstractBlock.Properties.of(Material.GLASS)

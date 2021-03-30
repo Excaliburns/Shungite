@@ -1,11 +1,14 @@
-package org.tutmods.shungite.items.crystal;
+package org.tutmods.shungite.items.crystal.effects;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import org.tutmods.shungite.items.crystal.stats.Stat;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,25 +16,26 @@ import java.util.List;
 import static org.tutmods.shungite.ShungiteConstants.*;
 import static org.tutmods.shungite.util.ShungiteUtils.getTextComponent;
 
-public class ShungiteCrystalStats {
-    private Stat stat;
+@Getter @Setter
+public class ShungiteCrystalEffects {
+    private ShungiteEffect crystalEffect;
     private int level;
 
-    public ShungiteCrystalStats(final Stat stat){
-        this.stat = stat;
+    public ShungiteCrystalEffects(final ShungiteEffect crystalEffect){
+        this.crystalEffect = crystalEffect;
         this.level = 0; // Effects index from 0
     }
 
-    public ShungiteCrystalStats(final Stat stat, final int level){
-        this.stat = stat;
+    public ShungiteCrystalEffects(final ShungiteEffect crystalEffect, final int level){
+        this.crystalEffect = crystalEffect;
         this.level = level;
     }
 
-    public static CompoundNBT serialize(final ShungiteCrystalStats crystalStats) {
+    public static CompoundNBT serialize(final ShungiteCrystalEffects crystalStats) {
         CompoundNBT tag = new CompoundNBT();
 
         CompoundNBT statTag = new CompoundNBT();
-        statTag.putString(SHUNGITE_STAT_TAG, crystalStats.stat.getName());
+        statTag.putString(SHUNGITE_STAT_TAG, crystalStats.getCrystalEffect().getName());
         statTag.putInt(SHUNGITE_STAT_LEVEL_TAG, crystalStats.level);
 
         tag.put(SHUNGITE_CRYSTAL_STATS_TAG, statTag);
@@ -39,15 +43,15 @@ public class ShungiteCrystalStats {
         return tag;
     }
 
-    public static ShungiteCrystalStats deserialize(final CompoundNBT tag) {
+    public static ShungiteCrystalEffects deserialize(final CompoundNBT tag) {
         final CompoundNBT statTag = tag.getCompound(SHUNGITE_CRYSTAL_STATS_TAG);
-        final Stat tagStat = Stat.getStat(statTag.getString(SHUNGITE_STAT_TAG));
+        final ShungiteEffect tagStat = GameRegistry.findRegistry(ShungiteEffect.class).getValue(new ResourceLocation(MOD_ID, statTag.getString(SHUNGITE_STAT_TAG)));
         final int level = statTag.getInt(SHUNGITE_STAT_LEVEL_TAG);
 
-        return new ShungiteCrystalStats(tagStat, level);
+        return new ShungiteCrystalEffects(tagStat, level);
     }
 
-    public static List<ITextComponent> listToString(final List<ShungiteCrystalStats> stats) {
+    public static List<ITextComponent> listToString(final List<ShungiteCrystalEffects> stats) {
         final List<ITextComponent> textComponents = new ArrayList<>();
 
         textComponents.add(
@@ -58,32 +62,16 @@ public class ShungiteCrystalStats {
                 .append(new StringTextComponent(""))
         );
 
-        for (ShungiteCrystalStats s : stats) {
-            final IFormattableTextComponent statComponent = new StringTextComponent(s.stat.getReadableName().getString());
+        for (ShungiteCrystalEffects s : stats) {
+            final IFormattableTextComponent statComponent = new StringTextComponent(s.getCrystalEffect().getReadableName().getString());
             statComponent.withStyle(TextFormatting.RESET);
-            statComponent.withStyle(s.stat.getColor());
+            statComponent.withStyle(s.crystalEffect.getColor());
             statComponent.append(" ").append(Integer.toString(s.level + 1));
-            statComponent.append(" (").append(Integer.toString(s.stat.getPointValue() * (s.level + 1))).append(")");
+            statComponent.append(" (").append(Integer.toString(s.crystalEffect.getPointValue() * (s.level + 1))).append(")");
 
             textComponents.add(statComponent);
         }
 
         return textComponents;
-    }
-
-    public Stat getStat() {
-        return stat;
-    }
-
-    public void setStat(Stat stat) {
-        this.stat = stat;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 }
