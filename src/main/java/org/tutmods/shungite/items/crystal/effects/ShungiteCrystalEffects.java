@@ -63,7 +63,7 @@ public class ShungiteCrystalEffects {
         );
 
         for (ShungiteCrystalEffects s : stats) {
-            final IFormattableTextComponent statComponent = new StringTextComponent(s.getCrystalEffect().getReadableName().getString());
+            final IFormattableTextComponent statComponent = new StringTextComponent(s.getCrystalEffect().getMinecraftEffect().getDisplayName().getString());
             statComponent.withStyle(TextFormatting.RESET);
             statComponent.withStyle(s.crystalEffect.getColor());
             statComponent.append(" ").append(Integer.toString(s.level + 1));

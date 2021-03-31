@@ -10,21 +10,23 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 @Getter @Setter
 public class ShungiteEffect extends ForgeRegistryEntry<ShungiteEffect> {
-    private Effect minecraftEffect;
     private String name;
+    private Effect minecraftEffect;
     private int pointValue;
     private TextFormatting color;
-    private ITextComponent readableName;
 
     public ShungiteEffect(ResourceLocation registryName) {
         this.setRegistryName(registryName);
     }
 
-    public ShungiteEffect(final Effect effect, final String name, final int pointValue, final TextFormatting color, final ITextComponent readableName) {
-        this.minecraftEffect = effect;
+    public ShungiteEffect(final Effect effect, final String name, final int pointValue, final TextFormatting color) {
         this.name = name;
+        this.minecraftEffect = effect;
         this.pointValue = pointValue;
         this.color = color;
-        this.readableName = readableName;
+    }
+
+    public String getDisplayName() {
+        return this.minecraftEffect.getDisplayName().getString();
     }
 }
