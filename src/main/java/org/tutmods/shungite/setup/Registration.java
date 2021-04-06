@@ -3,12 +3,15 @@ package org.tutmods.shungite.setup;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryBuilder;
 import org.tutmods.shungite.ShungiteConstants;
+import org.tutmods.shungite.effects.world.ShungiteOreGeneration;
 import org.tutmods.shungite.items.crystal.effects.ShungiteEffect;
 
 public class Registration {
@@ -23,6 +26,9 @@ public class Registration {
         BLOCK_DEFERRED_REGISTER.register(EVENT_BUS);
         ITEM_DEFERRED_REGISTER.register(EVENT_BUS);
         EFFECT_DEFERRED_REGISTER.register(EVENT_BUS);
+
+        //Ore generation
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ShungiteOreGeneration::generateOres);
 
         SHUNGITE_EFFECT_DEFERRED_REGISTER.makeRegistry(ShungiteConstants.MOD_ID, RegistryBuilder::new);
         SHUNGITE_EFFECT_DEFERRED_REGISTER.register(EVENT_BUS);
