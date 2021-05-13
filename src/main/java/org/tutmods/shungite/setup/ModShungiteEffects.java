@@ -82,11 +82,11 @@ public class ModShungiteEffects {
 
     public static final RegistryObject<ShungiteEffect> EFFECT_AQUA_AFFINITY = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(ShungiteConstants.SHUNGITE_AQUA_AFFINITY, () ->
             new CustomShungiteEffect(
-                    ModEffects.SHUNGITTE_FLUIDITY.get(),
+                    ModEffects.SHUNGITE_FLUIDITY.get(),
                     ShungiteConstants.SHUNGITE_AQUA_AFFINITY,
                     1,
                     TextFormatting.AQUA,
-                    ModEffects.SHUNGITTE_FLUIDITY.get().getDisplayName().getString()
+                    ModEffects.SHUNGITE_FLUIDITY.get().getDisplayName().getString()
             )
     );
 

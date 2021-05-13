@@ -17,12 +17,11 @@ public class ShungiteOreGeneration {
         generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.NATURAL_STONE,
                         ModBlocks.SHUNGITE_CRYSTAL.get().defaultBlockState(), 2, 0, 10, 10);
     }
-    private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
-                                    int veinSize, int minHeight, int maxHeight, int amount) {
+    private static void generateOre(final BiomeGenerationSettingsBuilder settings, final RuleTest fillerType, final BlockState state,
+                                    final int veinSize, final int minHeight, final int maxHeight, final int amount) {
         settings.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
                 Feature.ORE.configured(new OreFeatureConfig(fillerType, state, veinSize))
                         .decorated(Placement.RANGE.configured(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
-                        //.decorated(Placement.CHANCE.configured(new ChanceConfig()))
                         .squared().count(amount));
     }
 

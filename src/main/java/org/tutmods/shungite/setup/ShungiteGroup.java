@@ -18,5 +18,6 @@ public class ShungiteGroup extends ItemGroup {
     @Override
     public void fillItemList(final NonNullList<ItemStack> stack) {
         stack.add(ModItems.SHUNGITE.get().getDefaultInstance());
+        stack.add(ModItems.SHUNGITE_DOWSING_ROD.get().getDefaultInstance());
     }
 }
