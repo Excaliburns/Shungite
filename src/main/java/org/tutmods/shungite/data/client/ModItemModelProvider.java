@@ -25,6 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         final ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
         buildItem(itemGenerated, "shungite");
+        buildItem(itemGenerated, "dowsing_rod");
     }
 
     private void buildItem(final ModelFile itemGenerated, final String name) {
