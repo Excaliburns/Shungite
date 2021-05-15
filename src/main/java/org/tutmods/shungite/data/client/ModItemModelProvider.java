@@ -20,7 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent("shungite_crystal", modLoc("block/shungite_crystal"));
+        withExistingParent("shungite_crystal_ore", modLoc("block/shungite_crystal_ore"));
 
         final ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 

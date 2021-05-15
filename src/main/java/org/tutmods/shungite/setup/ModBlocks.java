@@ -14,10 +14,9 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
     //shungite.item.shungite.shungite
-    public static final RegistryObject<Block> SHUNGITE_CRYSTAL = register("shungite_crystal", () ->
+    public static final RegistryObject<Block> SHUNGITE_CRYSTAL = register("shungite_crystal_ore", () ->
             new Block(
-                    AbstractBlock.Properties.of(Material.GLASS)
-                                            .strength(3, 10)
+                    AbstractBlock.Properties.of(Material.STONE)
                                             .harvestLevel(2)
                                             .sound(SoundType.ANCIENT_DEBRIS)));
     static void register() {}
