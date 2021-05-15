@@ -11,7 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryBuilder;
 import org.tutmods.shungite.ShungiteConstants;
-import org.tutmods.shungite.effects.world.ShungiteOreGeneration;
+import org.tutmods.shungite.world.ShungiteOreGeneration;
 import org.tutmods.shungite.items.crystal.effects.ShungiteEffect;
 
 public class Registration {

@@ -9,5 +9,8 @@
   "info.shungite.stats": "Stats",
   "info.shungite.shungiteCrystal": "Protects against frequencies and unwanted frequencies...",
 
+  "info.shungite.dowsing_rod_no_ores_found": "No shungite ores found!",
+  "info.shungite.dowsing_rod_ores_found": "Detected %s shungite nodes within %s blocks.",
+
   "effect.shungite.shungite_fluidity": "Crystal Fluidity"
 }

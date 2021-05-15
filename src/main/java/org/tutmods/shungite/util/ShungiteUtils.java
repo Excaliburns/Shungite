@@ -15,6 +15,10 @@ public class ShungiteUtils {
         return new TranslationTextComponent(key);
     }
 
+    public static IFormattableTextComponent getTextComponent(final String key, Object... args) {
+        return new TranslationTextComponent(key, args);
+    }
+
     public static CompoundNBT getShungiteData(final ItemStack stack) {
         if (!stack.isEmpty()) {
             if (stack.getTag() != null) {
