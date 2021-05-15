@@ -17,21 +17,25 @@ import static org.tutmods.shungite.ShungiteConstants.*;
 import static org.tutmods.shungite.util.ShungiteUtils.getTextComponent;
 
 @Getter @Setter
-public class ShungiteCrystalEffects {
+public class ShungiteCrystalEffect {
     private ShungiteEffect crystalEffect;
     private int level;
 
-    public ShungiteCrystalEffects(final ShungiteEffect crystalEffect){
+    public ShungiteCrystalEffect(final ShungiteEffect crystalEffect){
         this.crystalEffect = crystalEffect;
         this.level = 0; // Effects index from 0
     }
 
-    public ShungiteCrystalEffects(final ShungiteEffect crystalEffect, final int level){
+    public ShungiteCrystalEffect(final ShungiteEffect crystalEffect, final int level){
         this.crystalEffect = crystalEffect;
         this.level = level;
     }
 
-    public static CompoundNBT serialize(final ShungiteCrystalEffects crystalStats) {
+    public int getPointValue() {
+        return this.level + 1 + crystalEffect.getPointValue();
+    }
+
+    public static CompoundNBT serialize(final ShungiteCrystalEffect crystalStats) {
         CompoundNBT tag = new CompoundNBT();
 
         CompoundNBT statTag = new CompoundNBT();
@@ -43,15 +47,15 @@ public class ShungiteCrystalEffects {
         return tag;
     }
 
-    public static ShungiteCrystalEffects deserialize(final CompoundNBT tag) {
+    public static ShungiteCrystalEffect deserialize(final CompoundNBT tag) {
         final CompoundNBT statTag = tag.getCompound(SHUNGITE_CRYSTAL_STATS_TAG);
         final ShungiteEffect tagStat = GameRegistry.findRegistry(ShungiteEffect.class).getValue(new ResourceLocation(MOD_ID, statTag.getString(SHUNGITE_STAT_TAG)));
         final int level = statTag.getInt(SHUNGITE_STAT_LEVEL_TAG);
 
-        return new ShungiteCrystalEffects(tagStat, level);
+        return new ShungiteCrystalEffect(tagStat, level);
     }
 
-    public static List<ITextComponent> listToString(final List<ShungiteCrystalEffects> stats) {
+    public static List<ITextComponent> listToString(final List<ShungiteCrystalEffect> stats) {
         final List<ITextComponent> textComponents = new ArrayList<>();
 
         textComponents.add(
@@ -62,7 +66,7 @@ public class ShungiteCrystalEffects {
                 .append(new StringTextComponent(""))
         );
 
-        for (ShungiteCrystalEffects s : stats) {
+        for (ShungiteCrystalEffect s : stats) {
             final IFormattableTextComponent statComponent = new StringTextComponent(s.getCrystalEffect().getMinecraftEffect().getDisplayName().getString());
             statComponent.withStyle(TextFormatting.RESET);
             statComponent.withStyle(s.crystalEffect.getColor());

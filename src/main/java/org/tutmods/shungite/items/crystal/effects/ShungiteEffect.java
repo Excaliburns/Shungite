@@ -13,16 +13,18 @@ public class ShungiteEffect extends ForgeRegistryEntry<ShungiteEffect> {
     private String name;
     private Effect minecraftEffect;
     private int pointValue;
+    private int maxLevel;
     private TextFormatting color;
 
     public ShungiteEffect(ResourceLocation registryName) {
         this.setRegistryName(registryName);
     }
 
-    public ShungiteEffect(final Effect effect, final String name, final int pointValue, final TextFormatting color) {
+    public ShungiteEffect(final Effect effect, final String name, final int pointValue, final int maxLevel, final TextFormatting color) {
         this.name = name;
         this.minecraftEffect = effect;
         this.pointValue = pointValue;
+        this.maxLevel = maxLevel;
         this.color = color;
     }
 

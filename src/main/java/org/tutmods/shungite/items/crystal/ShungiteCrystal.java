@@ -15,7 +15,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeItem;
-import org.tutmods.shungite.items.crystal.effects.ShungiteCrystalEffects;
+import org.tutmods.shungite.items.crystal.effects.ShungiteCrystalEffect;
+import org.tutmods.shungite.items.crystal.properties.ShungiteCrystalProperties;
 import org.tutmods.shungite.setup.ModShungiteEffects;
 
 import javax.annotation.Nonnull;
@@ -38,58 +39,68 @@ public class ShungiteCrystal extends Item implements IForgeItem {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         if (!world.isClientSide) {
             final ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
-            if (stack.getItem() instanceof ShungiteCrystal) {
-                if (player.isCrouching()) {
-                    flipActive(stack);
-                }
+            final ShungiteCrystalProperties properties = getProperties(stack);
+
+            if (player.isCrouching()) {
+                properties.setActive(!properties.isActive());
             }
 
-            if (getMaxCrystalPower(stack) > 0) {
-                putCurrentCrystalPower(stack, getMaxCrystalPower(stack));
+            // TODO: remove this
+            if (properties.getMaxCrystalPower() > 0) {
+                properties.setCurrentCrystalPower(properties.getMaxCrystalPower());
             }
+
+            putProperties(stack, properties);
         }
         return super.use(world, player, hand);
     }
 
     @Override
-    public void inventoryTick(final ItemStack itemStack, final World world, final Entity entity, final int itemSlot, final boolean isSelected) {
-        final int crystalPower = getCurrentCrystalPower(itemStack);
-        final boolean isActive = getActive(itemStack);
+    public void inventoryTick(final ItemStack stack, final World world, final Entity entity, final int itemSlot, final boolean isSelected) {
+        final ShungiteCrystalProperties properties = getProperties(stack);
+        final boolean crystalPowerMoreThanZero = properties.getCurrentCrystalPower() > 0;
 
-        if (crystalPower > 0 && isActive) {
-            putCurrentCrystalPower(itemStack, crystalPower - 1);
-        }
 
-        if (entity instanceof PlayerEntity && crystalPower > 0 && isActive) {
-            PlayerEntity player = (PlayerEntity) entity;
+        if (crystalPowerMoreThanZero && properties.isActive()) {
+            properties.setCurrentCrystalPower(properties.getCurrentCrystalPower() - 1);
 
-            final List<Pair<Effect, Integer>> effectsToApply = getStats(itemStack)
-                    .stream()
-                    .map( stat -> new Pair<>(stat.getCrystalEffect().getMinecraftEffect(), stat.getLevel()))
-                    .collect(Collectors.toList());
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
 
-            for (Pair<Effect, Integer> effect : effectsToApply) {
-                player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond(), false, false));
+                final List<Pair<Effect, Integer>> effectsToApply = properties.getEffects()
+                        .stream()
+                        .map( stat -> new Pair<>(stat.getCrystalEffect().getMinecraftEffect(), stat.getLevel()))
+                        .collect(Collectors.toList());
+
+                // Effect -> Level of effect
+                // Apply each for one second
+                for (Pair<Effect, Integer> effect : effectsToApply) {
+                    player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond(), false, false));
+                }
             }
+
+            putProperties(stack, properties);
         }
     }
 
     @Override
     public void appendHoverText(final ItemStack stack, final World worldIn, final List<ITextComponent> tooltip, final ITooltipFlag flagIn) {
+        final ShungiteCrystalProperties properties = getProperties(stack);
+
         tooltip.add(getTextComponent("info.shungite.shungiteCrystal").withStyle(TextFormatting.GRAY));
 
         tooltip.add(getTextComponent("info.shungite.energy")
-                .append(": " + getCurrentCrystalPower(stack) + "/" + getMaxCrystalPower(stack))
+                .append(": " + properties.getCurrentCrystalPower() + "/" + properties.getMaxCrystalPower())
                 .withStyle(TextFormatting.BOLD).withStyle(TextFormatting.BLUE));
 
-        tooltip.addAll(ShungiteCrystalEffects.listToString(getStats(stack)));
+        tooltip.addAll(ShungiteCrystalEffect.listToString(properties.getEffects()));
 
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
     public boolean isFoil(final ItemStack stack) {
-        return getActive(stack);
+        return getProperties(stack).isActive();
     }
 
     //region Durability Display
@@ -105,7 +116,14 @@ public class ShungiteCrystal extends Item implements IForgeItem {
 
     @Override
     public double getDurabilityForDisplay(final ItemStack stack) {
-        return MathHelper.clamp(1.0D - getCurrentCrystalPower(stack) / (double) 5000, 0.0D, 1.0D);
+        final ShungiteCrystalProperties properties = getProperties(stack);
+
+        return MathHelper.clamp(1.0D - properties.getCurrentCrystalPower() / (double) properties.getMaxCrystalPower() , 0.0D, 1.0D);
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return IForgeItem.super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
     }
 
     @Override
@@ -119,9 +137,12 @@ public class ShungiteCrystal extends Item implements IForgeItem {
     public ItemStack getDefaultInstance() {
         final ItemStack stack = new ItemStack(this);
         stack.setTag(getShungiteData(stack));
-        putMaxCrystalPower(stack, 5000);
-        putCurrentCrystalPower(stack, 2500);
-        putStats(stack, Collections.singletonList(ModShungiteEffects.EFFECT_ABSORPTION.get()));
+        putProperties(stack, new ShungiteCrystalProperties(
+                Collections.singletonList(new ShungiteCrystalEffect(ModShungiteEffects.EFFECT_ABSORPTION.get())),
+                2500,
+                5000,
+                false
+        ));
 
         return stack;
     }

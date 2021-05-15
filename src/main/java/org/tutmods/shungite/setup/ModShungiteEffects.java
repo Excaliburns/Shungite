@@ -12,6 +12,7 @@ public class ModShungiteEffects {
             new ShungiteEffect(
                     Effects.ABSORPTION,
                     ShungiteConstants.SHUNGITE_ABSORPTION,
+                    10,
                     5,
                     TextFormatting.GOLD
             )
@@ -20,8 +21,9 @@ public class ModShungiteEffects {
     public static final RegistryObject<ShungiteEffect> EFFECT_REGENERATION = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(ShungiteConstants.SHUNGITE_REGENERATION, () ->
             new ShungiteEffect(
                     Effects.REGENERATION,
-                    ShungiteConstants.SHUNGITE_ABSORPTION,
-                    3,
+                    ShungiteConstants.SHUNGITE_REGENERATION,
+                    10,
+                    5,
                     TextFormatting.RED
             )
     );
@@ -30,7 +32,8 @@ public class ModShungiteEffects {
             new ShungiteEffect(
                     Effects.DAMAGE_RESISTANCE,
                     ShungiteConstants.SHUNGITE_DAMAGE_RESISTANCE,
-                    4,
+                    15,
+                    3,
                     TextFormatting.DARK_AQUA
             )
     );
@@ -40,7 +43,8 @@ public class ModShungiteEffects {
                     Effects.FIRE_RESISTANCE,
                     ShungiteConstants.SHUNGITE_FIRE_RESISTANCE,
                     10,
-                    TextFormatting.DARK_AQUA
+                    1,
+                    TextFormatting.DARK_RED
             )
     );
 
@@ -49,6 +53,7 @@ public class ModShungiteEffects {
                     Effects.WATER_BREATHING,
                     ShungiteConstants.SHUNGITE_WATER_BREATHING,
                     8,
+                    1,
                     TextFormatting.AQUA
             )
     );
@@ -58,6 +63,7 @@ public class ModShungiteEffects {
                     Effects.JUMP,
                     ShungiteConstants.SHUNGITE_JUMP,
                     8,
+                    5,
                     TextFormatting.GREEN
             )
     );
@@ -66,8 +72,9 @@ public class ModShungiteEffects {
             new ShungiteEffect(
                     Effects.MOVEMENT_SPEED,
                     ShungiteConstants.SHUNGITE_SPEED,
-                    2,
-                    TextFormatting.GREEN
+                    10,
+                    4,
+                    TextFormatting.AQUA
             )
     );
 
@@ -75,8 +82,9 @@ public class ModShungiteEffects {
             new ShungiteEffect(
                     Effects.DIG_SPEED,
                     ShungiteConstants.SHUNGITE_DIG_SPEED,
-                    1,
-                    TextFormatting.WHITE
+                    15,
+                    3,
+                    TextFormatting.YELLOW
             )
     );
 
@@ -84,6 +92,7 @@ public class ModShungiteEffects {
             new CustomShungiteEffect(
                     ModEffects.SHUNGITE_FLUIDITY.get(),
                     ShungiteConstants.SHUNGITE_AQUA_AFFINITY,
+                    15,
                     1,
                     TextFormatting.AQUA,
                     ModEffects.SHUNGITE_FLUIDITY.get().getDisplayName().getString()

@@ -2,8 +2,14 @@ package org.tutmods.shungite.setup;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.loot.LootFunction;
+import net.minecraft.loot.LootFunctionType;
+import net.minecraft.loot.functions.LootFunctionManager;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -11,6 +17,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryBuilder;
 import org.tutmods.shungite.ShungiteConstants;
+import org.tutmods.shungite.loot.ShungiteCrystalPropertiesLoot;
 import org.tutmods.shungite.world.ShungiteOreGeneration;
 import org.tutmods.shungite.items.crystal.effects.ShungiteEffect;
 
@@ -37,5 +44,14 @@ public class Registration {
         ModBlocks.register();
         ModEffects.register();
         ModShungiteEffects.register();
+
+        ShungiteCrystalPropertiesLoot.Functions.ShungiteCrystalsLoot = registerFunction(
+                new ShungiteCrystalPropertiesLoot.Serializer(),
+                new ResourceLocation(ShungiteConstants.MOD_ID, "shungite_random_crystal")
+        );
+    }
+
+    private static <T extends LootFunction> LootFunctionType registerFunction(LootFunction.Serializer<T> serializer, ResourceLocation key) {
+        return LootFunctionManager.register(key.toString(), serializer);
     }
 }

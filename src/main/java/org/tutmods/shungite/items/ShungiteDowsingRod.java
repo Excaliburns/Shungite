@@ -1,4 +1,4 @@
-package org.tutmods.shungite.items.crystal;
+package org.tutmods.shungite.items;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
@@ -49,7 +49,7 @@ public class ShungiteDowsingRod extends Item implements IForgeItem {
             final List<BlockPos> foundShungiteOre =  new ArrayList<>();
 
             blocksBetweenPlayerLookingAndDowsingEffect.forEach( blockPos -> {
-                if (world.getBlockState(blockPos).getBlock() == ModBlocks.SHUNGITE_CRYSTAL.get()) {
+                if (world.getBlockState(blockPos).getBlock() == ModBlocks.SHUNGITE_CRYSTAL_ORE.get()) {
                     foundShungiteOre.add(blockPos);
                 }
             });

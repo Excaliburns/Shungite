@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import org.tutmods.shungite.ShungiteConstants;
 import org.tutmods.shungite.items.crystal.ShungiteCrystal;
-import org.tutmods.shungite.items.crystal.ShungiteDowsingRod;
+import org.tutmods.shungite.items.ShungiteDowsingRod;
 
 public class ModItems {
     public static final RegistryObject<Item> SHUNGITE = Registration.ITEM_DEFERRED_REGISTER.register("shungite", () ->

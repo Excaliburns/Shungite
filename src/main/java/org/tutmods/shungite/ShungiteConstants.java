@@ -11,10 +11,11 @@ public class ShungiteConstants {
 
     public static final String SHUNGITE_EFFECT_REGISTRY_KEY = "shungite_effect";
 
-    public static final String SHUNGITE_ENERGY_TAG = "MaxEnergy";
+    public static final String SHUNGITE_MAX_ENERGY_TAG = "MaxEnergy";
     public static final String SHUNGITE_CURRENT_ENERGY_TAG = "CurrentEnergy";
     public static final String SHUNGITE_ACTIVE = "IsActive";
 
+    public static final String SHUNGITE_PROPERTIES_TAG = "Properties";
     public static final String SHUNGITE_STATS_TAG = "Stats";
     public static final String SHUNGITE_CRYSTAL_STATS_TAG = "CrystalStats";
     public static final String SHUNGITE_STAT_TAG = "Stat";

@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
     //shungite.item.shungite.shungite
-    public static final RegistryObject<Block> SHUNGITE_CRYSTAL = register("shungite_crystal_ore", () ->
+    public static final RegistryObject<Block> SHUNGITE_CRYSTAL_ORE = register("shungite_crystal_ore", () ->
             new Block(
                     AbstractBlock.Properties.of(Material.STONE)
                                             .harvestLevel(2)

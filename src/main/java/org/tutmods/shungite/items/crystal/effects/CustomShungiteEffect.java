@@ -11,8 +11,8 @@ public class CustomShungiteEffect extends ShungiteEffect {
         super(registryName);
     }
 
-    public CustomShungiteEffect(final Effect effect, final String name, final int pointValue, final TextFormatting color, final String displayName) {
-        super(effect, name, pointValue, color);
+    public CustomShungiteEffect(final Effect effect, final String name, final int pointValue, final int maxLevel, final TextFormatting color, final String displayName) {
+        super(effect, name, pointValue, maxLevel, color);
         this.displayName = displayName;
     }
 

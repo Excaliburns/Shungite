@@ -1,4 +1,4 @@
-package org.tutmods.shungite.data.client;
+package org.tutmods.shungite.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -13,6 +13,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(ModBlocks.SHUNGITE_CRYSTAL.get());
+        simpleBlock(ModBlocks.SHUNGITE_CRYSTAL_ORE.get());
     }
 }

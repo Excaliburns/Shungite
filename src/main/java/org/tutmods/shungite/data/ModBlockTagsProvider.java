@@ -1,4 +1,4 @@
-package org.tutmods.shungite.data.client;
+package org.tutmods.shungite.data;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
