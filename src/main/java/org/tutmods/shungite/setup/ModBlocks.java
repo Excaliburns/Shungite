@@ -18,6 +18,7 @@ public class ModBlocks {
             new Block(
                     AbstractBlock.Properties.of(Material.STONE)
                                             .harvestLevel(2)
+                                            .strength(10.0F, 6.0F)
                                             .sound(SoundType.ANCIENT_DEBRIS)));
     static void register() {}
 

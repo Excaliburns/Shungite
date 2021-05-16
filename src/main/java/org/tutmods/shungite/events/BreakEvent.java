@@ -17,7 +17,7 @@ public class BreakEvent {
 
         // duplicate aqua affinity logic
         // If they don't have aqua affinity but they do have the effect, give them a boost :)
-        if (player.isEyeInFluid(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(player) && player.hasEffect(ModEffects.SHUNGITE_FLUIDITY.get())) {
+        if (player.isEyeInFluid(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(player) && player.hasEffect(ModEffects.HYDRATED.get())) {
             float f1 = event.getOriginalSpeed();
             event.setNewSpeed(f1 * 5.0F);
         }

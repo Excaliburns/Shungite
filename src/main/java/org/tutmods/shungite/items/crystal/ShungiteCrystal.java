@@ -45,11 +45,6 @@ public class ShungiteCrystal extends Item implements IForgeItem {
                 properties.setActive(!properties.isActive());
             }
 
-            // TODO: remove this
-            if (properties.getMaxCrystalPower() > 0) {
-                properties.setCurrentCrystalPower(properties.getMaxCrystalPower());
-            }
-
             putProperties(stack, properties);
         }
         return super.use(world, player, hand);
@@ -59,7 +54,6 @@ public class ShungiteCrystal extends Item implements IForgeItem {
     public void inventoryTick(final ItemStack stack, final World world, final Entity entity, final int itemSlot, final boolean isSelected) {
         final ShungiteCrystalProperties properties = getProperties(stack);
         final boolean crystalPowerMoreThanZero = properties.getCurrentCrystalPower() > 0;
-
 
         if (crystalPowerMoreThanZero && properties.isActive()) {
             properties.setCurrentCrystalPower(properties.getCurrentCrystalPower() - 1);
@@ -78,9 +72,12 @@ public class ShungiteCrystal extends Item implements IForgeItem {
                     player.addEffect(new EffectInstance(effect.getFirst(), 20, effect.getSecond(), false, false));
                 }
             }
-
-            putProperties(stack, properties);
         }
+        else if (!crystalPowerMoreThanZero && properties.isActive()) {
+            properties.setActive(false);
+        }
+
+        putProperties(stack, properties);
     }
 
     @Override

@@ -88,14 +88,25 @@ public class ModShungiteEffects {
             )
     );
 
-    public static final RegistryObject<ShungiteEffect> EFFECT_AQUA_AFFINITY = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(ShungiteConstants.SHUNGITE_AQUA_AFFINITY, () ->
+    public static final RegistryObject<ShungiteEffect> EFFECT_AQUA_AFFINITY = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(ShungiteConstants.SHUNGITE_HYDRATED, () ->
             new CustomShungiteEffect(
-                    ModEffects.SHUNGITE_FLUIDITY.get(),
-                    ShungiteConstants.SHUNGITE_AQUA_AFFINITY,
+                    ModEffects.HYDRATED.get(),
+                    ShungiteConstants.SHUNGITE_HYDRATED,
                     15,
                     1,
                     TextFormatting.AQUA,
-                    ModEffects.SHUNGITE_FLUIDITY.get().getDisplayName().getString()
+                    ModEffects.HYDRATED.get().getDisplayName().getString()
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_5G_AURA = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(ShungiteConstants.SHUNGITE_5G_AURA, () ->
+            new CustomShungiteEffect(
+                    ModEffects.FIVE_G_AURA.get(),
+                    ShungiteConstants.SHUNGITE_5G_AURA,
+                    4,
+                    10,
+                    TextFormatting.DARK_RED,
+                    ModEffects.HYDRATED.get().getDisplayName().getString()
             )
     );
 
