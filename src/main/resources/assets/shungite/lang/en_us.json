@@ -1,0 +1,17 @@
+{
+  "itemGroup.shungite": "Shungite",
+
+  "item.shungite.shungite": "Shungite",
+  "item.shungite.dowsing_rod": "Shungite Dowsing Rod",
+  "block.shungite.shungite_crystal_ore": "Shungite Crystal Ore",
+
+  "info.shungite.energy": "Energy",
+  "info.shungite.stats": "Stats",
+  "info.shungite.shungiteCrystal": "Protects against frequencies and unwanted frequencies...",
+
+  "info.shungite.dowsing_rod_no_ores_found": "No shungite ores found!",
+  "info.shungite.dowsing_rod_ores_found": "Detected %s shungite nodes within %s blocks.",
+
+  "effect.shungite.hydrated": "Crystal Fluidity",
+  "effect.shungite.5g_aura": "5G Aura"
+}
