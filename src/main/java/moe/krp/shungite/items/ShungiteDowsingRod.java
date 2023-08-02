@@ -52,7 +52,7 @@ public class ShungiteDowsingRod extends Item implements IForgeItem {
                 }
             });
 
-            if (foundShungiteOre.size() > 0) {
+            if (!foundShungiteOre.isEmpty()) {
                 final String formatted = ShungiteUtils.getTextComponent("info.shungite.dowsing_rod_ores_found", foundShungiteOre.size(), offsetX).getString();
 
                 if (!itemUseContext.getLevel().isClientSide) {

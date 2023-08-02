@@ -45,7 +45,7 @@ public class CrystalPropertyGenerator {
                     .filter(each -> each.getPointValue() <= remainingPoints)
                     .toList();
 
-            if (possibleNextEffect.size() > 0) {
+            if (!possibleNextEffect.isEmpty()) {
                 final int randomEffectIdx = rand.nextInt(possibleNextEffect.size());
                 final ShungiteEffect newEffect = possibleNextEffect.get(randomEffectIdx);
 

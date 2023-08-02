@@ -1,29 +1,45 @@
 package moe.krp.shungite.items.crystal.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import moe.krp.shungite.ShungiteConstants;
+import moe.krp.shungite.exceptions.ShungiteEffectNotFoundException;
 import moe.krp.shungite.items.crystal.effects.ShungiteCrystalEffect;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@Data
 public class ShungiteCrystalProperties {
+    public static final Logger LOGGER = LogManager.getLogger();
     private List<ShungiteCrystalEffect> effects;
     private int currentCrystalPower;
     private int maxCrystalPower;
     private boolean active;
 
-    public ShungiteCrystalProperties(final List<ShungiteCrystalEffect> effects, final int currentCrystalPower, final int maxCrystalPower) {
+    public ShungiteCrystalProperties(
+            final List<ShungiteCrystalEffect> effects,
+            final int currentCrystalPower,
+            final int maxCrystalPower
+    ) {
         this.effects = effects;
         this.currentCrystalPower = currentCrystalPower;
         this.maxCrystalPower = maxCrystalPower;
         this.active = false;
+    }
+
+    public ShungiteCrystalProperties(
+            final List<ShungiteCrystalEffect> effects,
+            final int currentCrystalPower,
+            final int maxCrystalPower,
+            final boolean active
+    ) {
+        this.effects = effects;
+        this.currentCrystalPower = currentCrystalPower;
+        this.maxCrystalPower = maxCrystalPower;
+        this.active = active;
     }
 
     public static ShungiteCrystalProperties deserialize(final CompoundTag tag) {
@@ -34,9 +50,14 @@ public class ShungiteCrystalProperties {
 
         final List<ShungiteCrystalEffect> stats = new ArrayList<>();
         for (int i = 0; i < statList.size(); i++) {
-            final ShungiteCrystalEffect stat = ShungiteCrystalEffect.deserialize(statList.getCompound(i));
-
-            stats.add(stat);
+            try {
+                final ShungiteCrystalEffect stat = ShungiteCrystalEffect.deserialize(statList.getCompound(i));
+                stats.add(stat);
+            } catch (ShungiteEffectNotFoundException e) {
+                LOGGER.error("Could not deserialize ShungiteCrystalEffect: ");
+                LOGGER.error(statList.getCompound(i));
+                LOGGER.error("Skipping..");
+            }
         }
         // endregion
 
@@ -74,5 +95,36 @@ public class ShungiteCrystalProperties {
         // endregion
 
         return tag;
+    }
+    public List<ShungiteCrystalEffect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(List<ShungiteCrystalEffect> effects) {
+        this.effects = effects;
+    }
+
+    public int getCurrentCrystalPower() {
+        return currentCrystalPower;
+    }
+
+    public void setCurrentCrystalPower(int currentCrystalPower) {
+        this.currentCrystalPower = currentCrystalPower;
+    }
+
+    public int getMaxCrystalPower() {
+        return maxCrystalPower;
+    }
+
+    public void setMaxCrystalPower(int maxCrystalPower) {
+        this.maxCrystalPower = maxCrystalPower;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
