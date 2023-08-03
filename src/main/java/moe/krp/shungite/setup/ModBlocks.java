@@ -16,22 +16,22 @@ public class ModBlocks {
   //shungite.item.shungite.shungite
   public static final RegistryObject<Block> SHUNGITE_CRYSTAL_ORE = register("shungite_crystal_ore",
       () -> new Block(
-              BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F)
+              BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F)
       )
   );
   public static final RegistryObject<Block> DEEPSLATE_SHUNGITE_CRYSTAL_ORE = register("deepslate_shungite_crystal_ore",
           () -> new Block(
-                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.DEEPSLATE)
+                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F).sound(SoundType.DEEPSLATE)
           )
   );
   public static final RegistryObject<Block> NETHERRACK_SHUNGITE_CRYSTAL_ORE = register("netherrack_shungite_crystal_ore",
           () -> new Block(
-                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.NETHERRACK)
+                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F).sound(SoundType.NETHERRACK)
           )
   );
   public static final RegistryObject<Block> END_SHUNGITE_CRYSTAL_ORE = register("end_shungite_crystal_ore",
           () -> new Block(
-                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)
+                  BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F).sound(SoundType.STONE)
           )
   );
 

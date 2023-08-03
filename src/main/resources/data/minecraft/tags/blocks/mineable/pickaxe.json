@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "shungite:shungite_crystal_ore",
+    "shungite:deepslate_shungite_crystal_ore",
+    "shungite:netherrack_shungite_crystal_ore",
+    "shungite:end_shungite_crystal_ore"
+  ]
+}
