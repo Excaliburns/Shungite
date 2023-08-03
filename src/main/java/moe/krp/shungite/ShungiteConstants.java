@@ -28,7 +28,7 @@ public class ShungiteConstants {
   public static final String SHUNGITE_JUMP = "shungite_jump";
   public static final String SHUNGITE_SPEED = "shungite_speed";
   public static final String SHUNGITE_DIG_SPEED = "shungite_digspeed";
-  public static final String SHUNGITE_HYDRATED = "shungite_hydrated";
+  public static final String SHUNGITE_DEXTEROUS = "shungite_dexterous";
   public static final String SHUNGITE_5G_AURA = "shungite_5g_aura";
 
   public static final String SHUNGITE_DOWSING_ROD_NO_ORES_FOUND = "shungite_dowsing_rod_no_ores_found";

@@ -14,5 +14,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.SHUNGITE_CRYSTAL_ORE.get());
+        simpleBlock(ModBlocks.DEEPSLATE_SHUNGITE_CRYSTAL_ORE.get());
+        simpleBlock(ModBlocks.NETHERRACK_SHUNGITE_CRYSTAL_ORE.get());
+        simpleBlock(ModBlocks.END_SHUNGITE_CRYSTAL_ORE.get());
     }
 }

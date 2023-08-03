@@ -1,5 +1,6 @@
 package moe.krp.shungite.items.crystal;
 
+import static moe.krp.shungite.loot.CrystalPropertyGenerator.getRandomNewCrystalProperties;
 import static moe.krp.shungite.util.ShungiteUtils.getTextComponent;
 import static net.minecraft.util.Mth.clamp;
 
@@ -134,12 +135,7 @@ public class ShungiteCrystal extends Item implements IForgeItem {
     public ItemStack getDefaultInstance() {
         final ItemStack stack = new ItemStack(this);
         stack.setTag(ShungiteUtils.getShungiteData(stack));
-        CrystalUtils.putProperties(stack, new ShungiteCrystalProperties(
-                Collections.singletonList(new ShungiteCrystalEffect(ModShungiteEffects.EFFECT_ABSORPTION.get())),
-                2500,
-                5000,
-                false
-        ));
+        CrystalUtils.putProperties(stack, getRandomNewCrystalProperties());
 
         return stack;
     }
