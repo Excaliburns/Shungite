@@ -9,19 +9,30 @@ public class ShungiteEffect {
     private int pointValue;
     private int maxLevel;
     private ChatFormatting color;
+    private ShungiteEffectType type;
+
+    public enum ShungiteEffectType {
+        POSITIVE_PLUS, // really good!
+        POSITIVE,
+        NEGATIVE,
+        NEGATIVE_PLUS,
+        NEUTRAL
+    }
 
     public ShungiteEffect(
         final String name,
         final MobEffect effect,
         final int pointValue,
         final int maxLevel,
-        final ChatFormatting color
+        final ChatFormatting color,
+        final ShungiteEffectType type
     ) {
         this.name = name;
         this.mobEffect = effect;
         this.pointValue = pointValue;
         this.maxLevel = maxLevel;
         this.color = color;
+        this.type = type;
     }
 
     public String getDisplayName() {

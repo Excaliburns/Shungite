@@ -135,7 +135,7 @@ public class ShungiteCrystal extends Item implements IForgeItem {
     public ItemStack getDefaultInstance() {
         final ItemStack stack = new ItemStack(this);
         stack.setTag(ShungiteUtils.getShungiteData(stack));
-        CrystalUtils.putProperties(stack, getRandomNewCrystalProperties());
+        CrystalUtils.putProperties(stack, getRandomNewCrystalProperties(1, 1));
 
         return stack;
     }

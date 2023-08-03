@@ -54,7 +54,7 @@ public class ModLootTableProvider extends LootTableProvider {
                     LootTable.lootTable()
                              .withPool(
                                      LootPool.lootPool()
-                                             .setRolls(UniformGenerator.between(2F, 5F))
+                                             .setRolls(UniformGenerator.between(1F, 2F))
                                              .add(LootItem.lootTableItem(ModItems.SHUNGITE.get()))
                                              .apply(ApplyExplosionDecay.explosionDecay())
                                              .apply(ApplyShungiteCrystalProperties.builder())
@@ -64,7 +64,7 @@ public class ModLootTableProvider extends LootTableProvider {
                     LootTable.lootTable()
                              .withPool(
                                      LootPool.lootPool()
-                                             .setRolls(UniformGenerator.between(2F, 5F))
+                                             .setRolls(UniformGenerator.between(1F, 2F))
                                              .add(LootItem.lootTableItem(ModItems.SHUNGITE.get()))
                                              .apply(ApplyExplosionDecay.explosionDecay())
                                              .apply(ApplyShungiteCrystalProperties.builder())
@@ -74,7 +74,7 @@ public class ModLootTableProvider extends LootTableProvider {
                     LootTable.lootTable()
                              .withPool(
                                      LootPool.lootPool()
-                                             .setRolls(UniformGenerator.between(3F, 7F))
+                                             .setRolls(UniformGenerator.between(2F, 3F))
                                              .add(LootItem.lootTableItem(ModItems.SHUNGITE.get()))
                                              .apply(ApplyExplosionDecay.explosionDecay())
                                              .apply(ApplyShungiteCrystalProperties.builder())
@@ -84,7 +84,7 @@ public class ModLootTableProvider extends LootTableProvider {
                     LootTable.lootTable()
                              .withPool(
                                      LootPool.lootPool()
-                                             .setRolls(UniformGenerator.between(1F, 2F))
+                                             .setRolls(UniformGenerator.between(3F, 3F))
                                              .add(LootItem.lootTableItem(ModItems.SHUNGITE.get()))
                                              .apply(ApplyExplosionDecay.explosionDecay())
                                              .apply(ApplyShungiteCrystalProperties.builder())

@@ -14,26 +14,26 @@ public class CrystalPropertyGenerator {
     private static final List<ShungiteEffect> shungiteEffects = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER
             .getEntries().stream().map(RegistryObject::get).toList();
 
-    private static final int MAX_POINT_VALUE = 60;
+    private static final int MAX_POINT_VALUE = 20;
     private static final int MAX_POWER_VALUE = 50000;
 
-    /**
-     * Get some random effects when the block is broken, if they have fortune make the effects better?
-     */
     public static ShungiteCrystalProperties getRandomNewCrystalProperties() {
+        return getRandomNewCrystalProperties(1, 1);
+    }
+
+    public static ShungiteCrystalProperties getRandomNewCrystalProperties(
+            final int fortuneLevel,
+            final int dimensionModifier
+    ) {
         final Random rand = new Random();
+        final int randomCrystalMaxPoints = MAX_POINT_VALUE * fortuneLevel * dimensionModifier;
 
-        final int randomCrystalMaxPoints = (int) (MAX_POINT_VALUE * .3); // 18
+        final int maxPowerMod = (25 - (fortuneLevel * 3)) - (dimensionModifier * 3);
 
-        final double maxPowerMin = (double) MAX_POWER_VALUE / 25; // 2000
-        final double maxPowerMax = (double) MAX_POWER_VALUE / 15; // 3333
+        final double maxPowerMin = (double) MAX_POWER_VALUE / maxPowerMod;
+        final double maxPowerMax = (double) MAX_POWER_VALUE / Math.max(maxPowerMod - 10, 1);
 
-        final int randomMaxPower =  (int) (maxPowerMin + (maxPowerMax - maxPowerMin) * rand.nextDouble()); // 2000 - 3333
-
-        final double currentPowerMin = 500;
-        final double currentPowerMax = randomMaxPower * .90; // 3000
-
-        final int randomCurrentPower = (int) (currentPowerMin + (currentPowerMax - currentPowerMin) * rand.nextDouble()); // 500 - 3000
+        final int randomMaxPower =  (int) (maxPowerMin + (maxPowerMax - maxPowerMin) * rand.nextDouble());
 
         int starting = 0;
         final HashMap<ShungiteEffect, Integer> effectListAndCount = new HashMap<>();
@@ -66,6 +66,6 @@ public class CrystalPropertyGenerator {
                 .collect(Collectors.toList());
 
 
-        return new ShungiteCrystalProperties(crystalEffectList, randomCurrentPower, randomMaxPower);
+        return new ShungiteCrystalProperties(crystalEffectList, randomMaxPower, randomMaxPower);
     }
 }

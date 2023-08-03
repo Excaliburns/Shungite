@@ -29,7 +29,29 @@ public class ShungiteConstants {
   public static final String SHUNGITE_SPEED = "shungite_speed";
   public static final String SHUNGITE_DIG_SPEED = "shungite_digspeed";
   public static final String SHUNGITE_DEXTEROUS = "shungite_dexterous";
-  public static final String SHUNGITE_5G_AURA = "shungite_5g_aura";
+  public static final String SHUNGITE_SLOWNESS = "shungite_slowness";
+  public static final String SHUNGITE_MINING_FATIGUE = "shungite_mining_fatigue";
+  public static final String SHUNGITE_STRENGTH = "shungite_strength";
+  public static final String SHUNGITE_NAUSEA = "shungite_nausea";
+  public static final String SHUNGITE_INVISIBILITY = "shungite_invisibility";
+  public static final String SHUNGITE_BLINDNESS = "shungite_blindness";
+  public static final String SHUNGITE_NIGHT_VISION = "shungite_night_vision";
+  public static final String SHUNGITE_HUNGER = "shungite_hunger";
+  public static final String SHUNGITE_WEAKNESS = "shungite_weakness";
+  public static final String SHUNGITE_POISON = "shungite_poison";
+  public static final String SHUNGITE_WITHER = "shungite_wither";
+  public static final String SHUNGITE_SATURATION = "shungite_saturation";
+  public static final String SHUNGITE_LEVITATION = "shungite_levatation";
+  public static final String SHUNGITE_LUCK = "shungite_luck";
+  public static final String SHUNGITE_UNLUCK = "shungite_unluck";
+
+  // Special stuff, TODO
+  public static final String SHUNGITE_MINERS_LIGHT = "shungite_miners_light";
+  public static final String SHUNGITE_REACH = "shungite_reach";
+  public static final String SHUNGITE_MOB_FOLLOWERS = "shungite_mob_followers";
+  public static final String SHUNGITE_MOB_BREED = "shungite_mob_breeding";
+
+
 
   public static final String SHUNGITE_DOWSING_ROD_NO_ORES_FOUND = "shungite_dowsing_rod_no_ores_found";
   public static final String SHUNGITE_DOWSING_ROD_ORES_FOUND = "shungite_dowsing_rod_ores_found";
