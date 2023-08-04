@@ -3,20 +3,28 @@ package moe.krp.shungite.items.crystal.effects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffect;
 
+import java.util.List;
+
 public class ShungiteEffect {
     private String name;
     private MobEffect mobEffect;
     private int pointValue;
     private int maxLevel;
-    private ChatFormatting color;
-    private ShungiteEffectType type;
+    private final ShungiteEffectType type;
 
     public enum ShungiteEffectType {
         POSITIVE_PLUS, // really good!
         POSITIVE,
         NEGATIVE,
         NEGATIVE_PLUS,
-        NEUTRAL
+        NEUTRAL;
+
+        public static List<ShungiteEffectType> positiveTypes() {
+            return List.of(POSITIVE_PLUS, POSITIVE, NEUTRAL);
+        }
+        public static List<ShungiteEffectType> negativeTypes() {
+            return List.of(NEGATIVE, NEGATIVE_PLUS);
+        }
     }
 
     public ShungiteEffect(
@@ -24,14 +32,12 @@ public class ShungiteEffect {
         final MobEffect effect,
         final int pointValue,
         final int maxLevel,
-        final ChatFormatting color,
         final ShungiteEffectType type
     ) {
         this.name = name;
         this.mobEffect = effect;
         this.pointValue = pointValue;
         this.maxLevel = maxLevel;
-        this.color = color;
         this.type = type;
     }
 
@@ -72,10 +78,16 @@ public class ShungiteEffect {
     }
 
     public ChatFormatting getColor() {
-        return color;
+        return switch (type) {
+            case POSITIVE_PLUS -> ChatFormatting.GOLD;
+            case POSITIVE -> ChatFormatting.GREEN;
+            case NEUTRAL -> ChatFormatting.WHITE;
+            case NEGATIVE -> ChatFormatting.RED;
+            case NEGATIVE_PLUS -> ChatFormatting.DARK_RED;
+        };
     }
 
-    public void setColor(ChatFormatting color) {
-        this.color = color;
+    public ShungiteEffectType getType() {
+        return type;
     }
 }

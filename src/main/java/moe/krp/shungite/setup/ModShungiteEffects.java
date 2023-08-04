@@ -2,11 +2,8 @@ package moe.krp.shungite.setup;
 
 import moe.krp.shungite.ShungiteConstants;
 import moe.krp.shungite.items.crystal.effects.ShungiteEffect;
-import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.ArrayList;
 
 public class ModShungiteEffects {
     public static final RegistryObject<ShungiteEffect> EFFECT_ABSORPTION = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
@@ -15,7 +12,6 @@ public class ModShungiteEffects {
                     MobEffects.ABSORPTION,
                     10,
                     5,
-                    ChatFormatting.GOLD,
                     ShungiteEffect.ShungiteEffectType.POSITIVE_PLUS
             )
     );
@@ -25,7 +21,6 @@ public class ModShungiteEffects {
                     MobEffects.REGENERATION,
                     20,
                     3,
-                    ChatFormatting.LIGHT_PURPLE,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -35,7 +30,6 @@ public class ModShungiteEffects {
                     MobEffects.DAMAGE_RESISTANCE,
                     10,
                     2,
-                    ChatFormatting.WHITE,
                     ShungiteEffect.ShungiteEffectType.NEUTRAL
             )
     );
@@ -45,7 +39,6 @@ public class ModShungiteEffects {
                     MobEffects.FIRE_RESISTANCE,
                     15,
                     1,
-                    ChatFormatting.RED,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -56,7 +49,6 @@ public class ModShungiteEffects {
                             MobEffects.WATER_BREATHING,
                             15,
                             1,
-                            ChatFormatting.AQUA,
                             ShungiteEffect.ShungiteEffectType.POSITIVE
                     )
     );
@@ -66,7 +58,6 @@ public class ModShungiteEffects {
                     MobEffects.JUMP,
                     5,
                     3,
-                    ChatFormatting.GREEN,
                     ShungiteEffect.ShungiteEffectType.NEUTRAL
             )
     );
@@ -76,7 +67,6 @@ public class ModShungiteEffects {
                     MobEffects.MOVEMENT_SPEED,
                     10,
                     3,
-                    ChatFormatting.BLUE,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -86,7 +76,6 @@ public class ModShungiteEffects {
                     MobEffects.DIG_SPEED,
                     25,
                     2,
-                    ChatFormatting.GOLD,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -96,7 +85,6 @@ public class ModShungiteEffects {
                     ModEffects.DEXTEROUS.get(),
                     15,
                     1,
-                    ChatFormatting.AQUA,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -107,7 +95,6 @@ public class ModShungiteEffects {
                     MobEffects.MOVEMENT_SLOWDOWN,
                     2,
                     5,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.NEGATIVE
             )
     );
@@ -118,7 +105,6 @@ public class ModShungiteEffects {
                     MobEffects.DIG_SLOWDOWN,
                     2,
                     5,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.NEGATIVE
             )
     );
@@ -128,7 +114,6 @@ public class ModShungiteEffects {
                     MobEffects.DAMAGE_BOOST,
                     20,
                     3,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.POSITIVE_PLUS
             )
     );
@@ -139,7 +124,6 @@ public class ModShungiteEffects {
                     MobEffects.CONFUSION,
                     1,
                     1,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.NEGATIVE_PLUS
             )
     );
@@ -150,7 +134,6 @@ public class ModShungiteEffects {
                     MobEffects.INVISIBILITY,
                     20,
                     1,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.POSITIVE_PLUS
             )
     );
@@ -160,7 +143,6 @@ public class ModShungiteEffects {
                     MobEffects.BLINDNESS,
                     1,
                     1,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.NEGATIVE_PLUS
             )
     );
@@ -171,7 +153,6 @@ public class ModShungiteEffects {
                     MobEffects.NIGHT_VISION,
                     15,
                     1,
-                    ChatFormatting.GRAY,
                     ShungiteEffect.ShungiteEffectType.POSITIVE
             )
     );
@@ -182,7 +163,76 @@ public class ModShungiteEffects {
                     MobEffects.HUNGER,
                     5,
                     2,
-                    ChatFormatting.RED,
+                    ShungiteEffect.ShungiteEffectType.NEGATIVE
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_WEAKNESS = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_WEAKNESS, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_WEAKNESS,
+                    MobEffects.WEAKNESS,
+                    5,
+                    3,
+                    ShungiteEffect.ShungiteEffectType.NEGATIVE
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_POISON = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_POISON, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_POISON,
+                    MobEffects.POISON,
+                    5,
+                    2,
+                    ShungiteEffect.ShungiteEffectType.NEGATIVE_PLUS
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_WITHER = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_WITHER, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_WITHER,
+                    MobEffects.WITHER,
+                    5,
+                    2,
+                    ShungiteEffect.ShungiteEffectType.NEGATIVE_PLUS
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_SATURATION = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_SATURATION, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_SATURATION,
+                    MobEffects.SATURATION,
+                    25,
+                    1,
+                    ShungiteEffect.ShungiteEffectType.POSITIVE_PLUS
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_LEVITATION = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_LEVITATION, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_LEVITATION,
+                    MobEffects.LEVITATION,
+                    15,
+                    1,
+                    ShungiteEffect.ShungiteEffectType.NEUTRAL
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_LUCK = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_LUCK, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_LUCK,
+                    MobEffects.LUCK,
+                    20,
+                    3,
+                    ShungiteEffect.ShungiteEffectType.POSITIVE
+            )
+    );
+
+    public static final RegistryObject<ShungiteEffect> EFFECT_UNLUCKY = Registration.SHUNGITE_EFFECT_DEFERRED_REGISTER.register(
+            ShungiteConstants.SHUNGITE_UNLUCK, () -> new ShungiteEffect(
+                    ShungiteConstants.SHUNGITE_UNLUCK,
+                    MobEffects.UNLUCK,
+                    5,
+                    3,
                     ShungiteEffect.ShungiteEffectType.NEGATIVE
             )
     );
